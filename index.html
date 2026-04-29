@@ -686,6 +686,120 @@
             overflow: hidden;
         }
         
+        .update-banner-major {
+            background: linear-gradient(135deg, var(--success), var(--neon-blue), var(--primary));
+            border: 3px solid var(--neon-yellow);
+            box-shadow: 0 0 40px rgba(6, 214, 160, 0.5);
+            animation: majorPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes majorPulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(6, 214, 160, 0.5); }
+            50% { box-shadow: 0 0 60px rgba(0, 212, 255, 0.7); }
+        }
+        
+        .update-banner-major::before {
+            content: '🚀';
+            animation: rocket 2s ease-in-out infinite;
+        }
+        
+        @keyframes rocket {
+            0%, 100% { transform: translateY(0) rotate(-15deg); }
+            50% { transform: translateY(-8px) rotate(15deg); }
+        }
+        
+        .update-banner-secondary {
+            opacity: 0.85;
+        }
+        
+        /* Personal sales highlight */
+        .personal-sales-group {
+            background: linear-gradient(135deg, rgba(6, 214, 160, 0.15), rgba(0, 212, 255, 0.1));
+            border: 2px solid var(--success);
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 0 20px rgba(6, 214, 160, 0.2);
+        }
+        
+        .personal-sales-group label {
+            color: var(--success) !important;
+            font-size: 1rem !important;
+        }
+        
+        .sales-hint {
+            font-size: 0.78rem;
+            color: var(--neon-blue);
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        /* Sales scenarios */
+        .sales-scenarios {
+            background: linear-gradient(145deg, rgba(6, 214, 160, 0.08), rgba(0, 0, 0, 0.4));
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 2px dashed var(--success);
+        }
+        
+        .sales-scenarios h4 {
+            font-family: 'Russo One', sans-serif;
+            color: var(--success);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        
+        .scenario-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 8px 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            align-items: center;
+        }
+        
+        .scenario-row:last-child {
+            border-bottom: none;
+        }
+        
+        .scenario-row.header {
+            font-family: 'Russo One', sans-serif;
+            font-size: 0.72rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 6px;
+        }
+        
+        .scenario-row.you {
+            background: rgba(255, 230, 109, 0.15);
+            border-radius: 6px;
+            border: 1px solid var(--neon-yellow);
+            font-weight: 700;
+        }
+        
+        .scenario-tag {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+            display: inline-block;
+            font-family: 'Russo One', sans-serif;
+        }
+        
+        .scenario-tag.weak { background: rgba(239, 71, 111, 0.3); color: var(--accent); }
+        .scenario-tag.avg { background: rgba(255, 209, 102, 0.2); color: var(--secondary); }
+        .scenario-tag.strong { background: rgba(6, 214, 160, 0.25); color: var(--success); }
+        .scenario-tag.beast { background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow)); color: var(--dark); }
+        
+        .scenario-amount {
+            font-family: 'Russo One', sans-serif;
+            color: var(--neon-yellow);
+            text-align: right;
+        }
+        
         .update-banner::before {
             content: '🔥';
             position: absolute;
@@ -1037,7 +1151,7 @@
             <!-- Header -->
             <header class="header">
                 <h1>💥 OH MY GEEK 💥</h1>
-                <p class="subtitle">Калькулятор Силы Зарплаты</p>
+                <p class="subtitle">Калькулятор Силы Зарплаты · v2.0 · с 1 мая 2026</p>
             </header>
             
             <!-- Motivational Quote -->
@@ -1045,11 +1159,21 @@
                 <p id="quoteText">"Я не проиграю! Я буду Королём Пиратов!" <span class="quote-source">— Монки Д. Луффи</span></p>
             </div>
             
-            <!-- February Update Banner -->
-            <div class="update-banner">
-                <h3>⚡ С 1 ФЕВРАЛЯ 2026 ⚡</h3>
+            <!-- May Update Banner -->
+            <div class="update-banner update-banner-major">
+                <h3>🚀 С 1 МАЯ 2026 — НОВАЯ СИСТЕМА 🚀</h3>
                 <ul>
-                    <li><strong>+20 ₽ к ставке</strong> для всех!</li>
+                    <li><strong>3% теперь от ТВОИХ продаж</strong>, а не от магазина</li>
+                    <li>Продал больше — заработал больше. Без потолка ⚡</li>
+                    <li>Все остальные надбавки и ставки <strong>сохраняются</strong></li>
+                </ul>
+            </div>
+            
+            <!-- February reminder banner -->
+            <div class="update-banner update-banner-secondary">
+                <h3>⚡ Действует с 1 ФЕВРАЛЯ 2026 ⚡</h3>
+                <ul>
+                    <li><strong>+20 ₽ к ставке</strong> для всех</li>
                     <li><strong>+20 ₽</strong> если KPI > 45% в прошлом месяце</li>
                 </ul>
             </div>
@@ -1129,9 +1253,10 @@
                         <input type="number" id="eveningShifts" value="0" min="0" max="31" inputmode="numeric">
                     </div>
                     
-                    <div class="form-group">
-                        <label>Выручка магазина за месяц (₽)</label>
-                        <input type="number" id="revenue" value="3000000" min="0" step="100000" inputmode="numeric">
+                    <div class="form-group personal-sales-group">
+                        <label>💪 ТВОИ личные продажи за месяц (₽)</label>
+                        <input type="number" id="personalSales" value="530000" min="0" step="10000" inputmode="numeric" placeholder="Сколько ты продал лично">
+                        <p class="sales-hint" id="salesHint">💡 Средний продавец продаёт ~530 000 ₽ за 168ч → это 15 900 ₽ премии</p>
                     </div>
                 </div>
                 
@@ -1210,7 +1335,7 @@
                             <div class="result-value" id="baseSalary">0 ₽</div>
                         </div>
                         <div class="result-item">
-                            <div class="result-label">% выручки</div>
+                            <div class="result-label">3% от ТВОИХ продаж</div>
                             <div class="result-value" id="revenueBonus">0 ₽</div>
                         </div>
                         <div class="result-item">
@@ -1240,12 +1365,56 @@
                         <tbody id="breakdownBody">
                         </tbody>
                     </table>
+                    
+                    <!-- Sales scenarios — motivation -->
+                    <div class="sales-scenarios" id="salesScenarios">
+                        <h4>🔥 А ЕСЛИ БЫ ТЫ ПРОДАЛ БОЛЬШЕ?</h4>
+                        <div class="scenario-row header">
+                            <span>Уровень</span>
+                            <span style="text-align:center;">Продажи</span>
+                            <span style="text-align:right;">Премия 3%</span>
+                        </div>
+                        <div class="scenario-row">
+                            <span><span class="scenario-tag weak">Слабо</span></span>
+                            <span style="text-align:center;">300 000 ₽</span>
+                            <span class="scenario-amount">9 000 ₽</span>
+                        </div>
+                        <div class="scenario-row">
+                            <span><span class="scenario-tag avg">Средне</span></span>
+                            <span style="text-align:center;">530 000 ₽</span>
+                            <span class="scenario-amount">15 900 ₽</span>
+                        </div>
+                        <div class="scenario-row">
+                            <span><span class="scenario-tag strong">Сильно</span></span>
+                            <span style="text-align:center;">700 000 ₽</span>
+                            <span class="scenario-amount">21 000 ₽</span>
+                        </div>
+                        <div class="scenario-row">
+                            <span><span class="scenario-tag beast">⚡ ЗВЕРЬ ⚡</span></span>
+                            <span style="text-align:center;">1 000 000 ₽</span>
+                            <span class="scenario-amount">30 000 ₽</span>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--neon-blue); margin-top: 10px; text-align: center; font-style: italic;">
+                            💡 Каждые +100 000 ₽ продаж = +3 000 ₽ к зарплате. Без потолка.
+                        </p>
+                    </div>
                 </div>
             </div>
             
             <!-- Info Section -->
             <div class="info-section">
                 <div class="info-grid">
+                    <div class="info-card" style="border-left-color: var(--success); background: rgba(6, 214, 160, 0.05);">
+                        <h3>🆚 БЫЛО vs СТАЛО</h3>
+                        <ul>
+                            <li><strong>БЫЛО:</strong> 3% от выручки магазина ÷ 950 × твои часы</li>
+                            <li><strong>СТАЛО:</strong> 3% от ТВОИХ личных продаж 🎯</li>
+                            <li><strong>Средний продавец:</strong> 0 разницы</li>
+                            <li><strong>Активный:</strong> +5–15 тыс. ₽/мес</li>
+                            <li><strong>Без потолка</strong> — продал миллион = 30 000 ₽ премии</li>
+                        </ul>
+                    </div>
+                    
                     <div class="info-card">
                         <h3>📈 Ставки</h3>
                         <table class="category-table">
@@ -1270,7 +1439,7 @@
                         <h3>⚡ Формула</h3>
                         <ul>
                             <li><strong>Оклад</strong> = Ставка × Часы (до 168)</li>
-                            <li><strong>% выручки</strong> = Выручка × 3% ÷ 950 × Часы</li>
+                            <li><strong>3% от продаж</strong> = ТВОИ продажи × 3% 🔥</li>
                             <li><strong>Вечерние</strong> = Смены × 200₽</li>
                             <li><strong>Переработка</strong> = (Ч-168) × Ставка × 1.5</li>
                             <li><strong>НДФЛ</strong> = Итого × 13%</li>
@@ -1408,20 +1577,32 @@
         };
         
         let employees = [
-    { name: "Кондратьев Андрей", startDate: "2025-12-12" },
     { name: "Ярикова Екатерина", startDate: "2025-04-15" },
     { name: "Вороная Ксения", startDate: "2025-05-21" },
     { name: "Базгутдинова Лада", startDate: "2025-08-01" },
     { name: "Мужаитова Дарина", startDate: "2026-01-23" },
-    { name: "Хаиров Амир", startDate: "2026-01-25" }
+    { name: "Хаиров Амир", startDate: "2026-01-25" },
+    { name: "Юлдашева Зиёдахон", startDate: "2026-02-01" },
+    { name: "Пяткина Пелагея", startDate: "2026-03-26" },
+    { name: "Шаманова Любовь", startDate: "2026-04-09" }
 ];
         
         // ========== INITIALIZATION ==========
         
         function loadEmployees() {
-            const saved = localStorage.getItem('omg_employees');
-            if (saved) {
-                employees = JSON.parse(saved);
+            // Версионирование — если версия не совпадает, перезаписываем список из кода
+            const STORAGE_VERSION = 'v2_2026_05';
+            const savedVersion = localStorage.getItem('omg_employees_version');
+            
+            if (savedVersion !== STORAGE_VERSION) {
+                // Новая версия — стираем старый список и пишем актуальный
+                localStorage.setItem('omg_employees', JSON.stringify(employees));
+                localStorage.setItem('omg_employees_version', STORAGE_VERSION);
+            } else {
+                const saved = localStorage.getItem('omg_employees');
+                if (saved) {
+                    employees = JSON.parse(saved);
+                }
             }
             renderEmployeeList();
             updateEmployeeSelect();
@@ -1613,7 +1794,7 @@
             const month = document.getElementById('monthSelect').value;
             const totalHours = parseFloat(document.getElementById('totalHours').value) || 0;
             const eveningShifts = parseFloat(document.getElementById('eveningShifts').value) || 0;
-            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const personalSales = parseFloat(document.getElementById('personalSales').value) || 0;
             const bestSeller = document.getElementById('bestSeller').checked;
             const smallGoodDeeds = parseFloat(document.getElementById('smallGoodDeeds').value) || 0;
             const bigGoodDeeds = parseFloat(document.getElementById('bigGoodDeeds').value) || 0;
@@ -1631,7 +1812,8 @@
             const overtimeHours = Math.max(0, totalHours - 168);
             const overtimeSalary = overtimeHours * baseRate * 1.5;
             
-            const revenueBonus = (revenue * 0.03 / 950) * totalHours;
+            // НОВАЯ ФОРМУЛА: 3% от ЛИЧНЫХ продаж сотрудника
+            const salesBonus = personalSales * 0.03;
             
             const eveningBonus = eveningShifts * 200;
             
@@ -1639,7 +1821,7 @@
             
             const goodDeedsBonus = (smallGoodDeeds * 250) + (bigGoodDeeds * 500);
             
-            const grossSalary = baseSalary + overtimeSalary + revenueBonus + eveningBonus + bestSellerBonus + goodDeedsBonus + personalBonus;
+            const grossSalary = baseSalary + overtimeSalary + salesBonus + eveningBonus + bestSellerBonus + goodDeedsBonus + personalBonus;
             
             const ndfl = grossSalary * 0.13;
             
@@ -1647,7 +1829,7 @@
             
             document.getElementById('baseRate').textContent = baseRate + ' ₽/ч';
             document.getElementById('baseSalary').textContent = formatMoney(baseSalary);
-            document.getElementById('revenueBonus').textContent = formatMoney(revenueBonus);
+            document.getElementById('revenueBonus').textContent = formatMoney(salesBonus);
             document.getElementById('overtimeBonus').textContent = formatMoney(overtimeSalary);
             document.getElementById('grossSalary').textContent = formatMoney(grossSalary);
             document.getElementById('netSalary').textContent = formatMoney(netSalary);
@@ -1659,7 +1841,7 @@
             const breakdown = [
                 { name: 'Оклад', calc: `${baseRate}₽ × ${Math.min(totalHours, 168)}ч`, amount: baseSalary, note: rateExplanation },
                 { name: 'Переработка', calc: `${overtimeHours}ч × ${baseRate}₽ × 1.5`, amount: overtimeSalary },
-                { name: '3% выручки', calc: `${(revenue/1000000).toFixed(1)}М × 3% ÷ 950 × ${totalHours}`, amount: revenueBonus },
+                { name: '🔥 3% от ТВОИХ продаж', calc: `${(personalSales/1000).toFixed(0)}т.₽ × 3%`, amount: salesBonus },
                 { name: 'Вечерние', calc: `${eveningShifts} × 200₽`, amount: eveningBonus },
                 { name: 'Лучший продавец', calc: bestSellerWeeks > 0 ? `${bestSellerWeeks} нед × 3000₽` : (bestSeller ? '3000₽' : '—'), amount: bestSellerBonus },
                 { name: 'Хорошие дела', calc: `${smallGoodDeeds}×250 + ${bigGoodDeeds}×500`, amount: goodDeedsBonus },
@@ -1697,12 +1879,34 @@
             
             document.getElementById('breakdownBody').innerHTML = breakdownHtml;
             
+            // Динамическая подсказка по продажам
+            updateSalesHint(personalSales);
+            
             const resultsDiv = document.getElementById('results');
             resultsDiv.classList.add('show');
             resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
             
             const randomQuote = resultQuotes[Math.floor(Math.random() * resultQuotes.length)];
             document.getElementById('resultQuote').innerHTML = `"${randomQuote.text}" <span class="quote-source">— ${randomQuote.source}</span>`;
+        }
+        
+        function updateSalesHint(sales) {
+            const hint = document.getElementById('salesHint');
+            if (!hint) return;
+            
+            if (sales < 350000) {
+                hint.innerHTML = '⚠️ Это ниже среднего. Активнее продавай — каждые +100т.₽ = +3 000 ₽';
+                hint.style.color = 'var(--accent)';
+            } else if (sales < 600000) {
+                hint.innerHTML = '✅ Норм. Если выйдешь на 700т.₽ — будет +5 000 ₽ к этой сумме';
+                hint.style.color = 'var(--secondary)';
+            } else if (sales < 900000) {
+                hint.innerHTML = '🔥 Сильный месяц! Прибавил себе бонус сверх среднего';
+                hint.style.color = 'var(--success)';
+            } else {
+                hint.innerHTML = '⚡ ЗВЕРЬ! Это лучшие 10% по сети — заслужил каждый рубль';
+                hint.style.color = 'var(--neon-yellow)';
+            }
         }
         
         function formatMoney(amount) {
