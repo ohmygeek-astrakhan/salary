@@ -1169,15 +1169,6 @@
                 </ul>
             </div>
             
-            <!-- February reminder banner -->
-            <div class="update-banner update-banner-secondary">
-                <h3>⚡ Действует с 1 ФЕВРАЛЯ 2026 ⚡</h3>
-                <ul>
-                    <li><strong>+20 ₽ к ставке</strong> для всех</li>
-                    <li><strong>+20 ₽</strong> если KPI > 45% в прошлом месяце</li>
-                </ul>
-            </div>
-            
             <!-- Main Calculator -->
             <div class="main-grid">
                 <!-- Employee Selection -->
@@ -1203,11 +1194,11 @@
                     <div class="form-group">
                         <label>Или укажи категорию вручную</label>
                         <select id="categorySelect" onchange="updateRates()">
-                            <option value="trainee">Стажёр (100 ₽/час)</option>
-                            <option value="cat3">Продавец 3 категории (120 ₽/час)</option>
-                            <option value="cat2">Продавец 2 категории (140 ₽/час)</option>
-                            <option value="cat1">Продавец 1 категории (160 ₽/час)</option>
-                            <option value="top">Высшая категория (180 ₽/час)</option>
+                            <option value="trainee">Стажёр (120 ₽/час)</option>
+                            <option value="cat3">Продавец 3 категории (140 ₽/час)</option>
+                            <option value="cat2">Продавец 2 категории (160 ₽/час)</option>
+                            <option value="cat1">Продавец 1 категории (180 ₽/час)</option>
+                            <option value="top">Высшая категория (200 ₽/час)</option>
                         </select>
                     </div>
                     
@@ -1289,22 +1280,17 @@
                     </p>
                 </div>
                 
-                <!-- February Bonuses -->
+                <!-- KPI Bonus -->
                 <div class="card">
-                    <h2 class="card-title"><span class="icon">🔥</span> ФЕВРАЛЬСКИЕ</h2>
-                    
-                    <div class="checkbox-group" onclick="toggleCheckbox('februaryBonus')">
-                        <input type="checkbox" id="februaryBonus" checked>
-                        <label>+20 ₽ к ставке (с февраля)</label>
-                    </div>
+                    <h2 class="card-title"><span class="icon">🎯</span> KPI-БОНУС</h2>
                     
                     <div class="checkbox-group" onclick="toggleCheckbox('kpiBonus')">
                         <input type="checkbox" id="kpiBonus">
-                        <label>+20 ₽ за KPI > 45% прошлого месяца</label>
+                        <label>+20 ₽/час за KPI > 45% в прошлом месяце</label>
                     </div>
-                    <p class="kpi-note">💡 KPI в январе → бонус с февраля</p>
+                    <p class="kpi-note">💡 KPI считается за прошлый месяц → бонус начисляется в текущем</p>
                     
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 15px;">
                         <label>Недель «Лучший продавец»</label>
                         <input type="number" id="bestSellerWeeks" value="0" min="0" max="5" inputmode="numeric">
                     </div>
@@ -1421,16 +1407,16 @@
                             <thead>
                                 <tr>
                                     <th>Категория</th>
-                                    <th>Ставка</th>
-                                    <th>С фев.</th>
+                                    <th>Ставка ₽/ч</th>
+                                    <th>+ KPI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Стажёр</td><td>100₽</td><td>120₽</td></tr>
-                                <tr><td>3 кат.</td><td>120₽</td><td>140₽</td></tr>
-                                <tr><td>2 кат.</td><td>140₽</td><td>160₽</td></tr>
-                                <tr><td>1 кат.</td><td>160₽</td><td>180₽</td></tr>
-                                <tr><td>Высшая</td><td>180₽</td><td>200₽</td></tr>
+                                <tr><td>Стажёр</td><td>120 ₽</td><td>140 ₽</td></tr>
+                                <tr><td>3 кат.</td><td>140 ₽</td><td>160 ₽</td></tr>
+                                <tr><td>2 кат.</td><td>160 ₽</td><td>180 ₽</td></tr>
+                                <tr><td>1 кат.</td><td>180 ₽</td><td>200 ₽</td></tr>
+                                <tr><td>Высшая</td><td>200 ₽</td><td>220 ₽</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1561,11 +1547,11 @@
         ];
         
         const baseRates = {
-            trainee: 100,
-            cat3: 120,
-            cat2: 140,
-            cat1: 160,
-            top: 180
+            trainee: 120,
+            cat3: 140,
+            cat2: 160,
+            cat1: 180,
+            top: 200
         };
         
         const categoryNames = {
@@ -1774,12 +1760,6 @@
         }
         
         function updateRates() {
-            const month = document.getElementById('monthSelect').value;
-            const isFebruary = month >= '2026-02';
-            
-            document.getElementById('februaryBonus').checked = isFebruary;
-            document.getElementById('februaryBonus').parentElement.style.opacity = isFebruary ? 1 : 0.5;
-            
             renderEmployeeList();
             updateEmployeeSelect();
             
@@ -1799,12 +1779,10 @@
             const smallGoodDeeds = parseFloat(document.getElementById('smallGoodDeeds').value) || 0;
             const bigGoodDeeds = parseFloat(document.getElementById('bigGoodDeeds').value) || 0;
             const personalBonus = parseFloat(document.getElementById('personalBonus').value) || 0;
-            const februaryBonus = document.getElementById('februaryBonus').checked;
             const kpiBonus = document.getElementById('kpiBonus').checked;
             const bestSellerWeeks = parseFloat(document.getElementById('bestSellerWeeks').value) || 0;
             
             let baseRate = baseRates[category];
-            if (februaryBonus) baseRate += 20;
             if (kpiBonus) baseRate += 20;
             
             const baseSalary = baseRate * Math.min(totalHours, 168);
@@ -1835,7 +1813,6 @@
             document.getElementById('netSalary').textContent = formatMoney(netSalary);
             
             let rateExplanation = `${baseRates[category]}`;
-            if (februaryBonus) rateExplanation += '+20';
             if (kpiBonus) rateExplanation += '+20';
             
             const breakdown = [
